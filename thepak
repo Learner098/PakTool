@@ -16,7 +16,7 @@ fi
    pak_folder="$HOME/PakTool/pak_folder"
    output_folder="$HOME/PakTool/output_folder"
 
- unpacking () {
+   unpacking () {
   qemu-i386 $PREFIX/share/quickbms/quickbms script_folder/*.bms $pak_folder/$(basename "$selected_file") $output_folder
 }
 
@@ -154,24 +154,26 @@ fi
 
 function Error_Fix {
   options=("Reset_Pak" "Reset_Output" "Quit")
-  select opt in "${option[@]}"
+  select opt in "${options[@]}"
   do
     case $opt in
-       "Reset_Pak")
-         Reset_Pak
-         ;;
-       "Reset_Outout")
-         Reset_Output
-         ;;
-       "Quit")
-         break
-         ;;
-    *) echo "invalid option $REPLY";;
-  esac
-done
+      "Reset_Pak")
+        Reset_Pak
+        ;;
+      "Reset_Output")
+        Reset_Output
+        ;;
+      "Quit")
+        break
+        ;;
+      *) 
+        echo "Invalid option $REPLY"
+        ;;
+    esac
+  done
 }
-         
-function Reset_Pak {
+ 
+ function Reset_Pak {
   if [[ -d "$pak_folder" ]]; then
     rm -rf "$pak_folder"
   else
@@ -179,7 +181,7 @@ function Reset_Pak {
   fi
 }
 
-function Reset_Output {
+ function Reset_Output {
   if [[ -d "$output_folder" ]]; then
     rm -rf "$output_folder"
   else
