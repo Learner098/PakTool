@@ -179,8 +179,8 @@ funtion Reset_Pak {
 }
 
 function Reset_Output {
-  [ -d "$outout_folder" ]]; then
-    rm -rf "$outout_folder"
+  [ -d "$output_folder" ]]; then
+    rm -rf "$output_folder"
   else
     bash $PREFIX/bin/paktool
   fi
