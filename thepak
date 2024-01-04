@@ -170,19 +170,19 @@ function Error_Fix {
   esac
 done
          
-funtion Reset_Pak {
+function Reset_Pak {
   if [[ -d "$pak_folder" ]]; then
-    rm -rf "$pakfolder"
+    rm -rf "$pak_folder"
   else
-    bash $PREFIX/bin/paktool
+    bash "$PREFIX/bin/paktool"
   fi
 }
 
 function Reset_Output {
-  [ -d "$output_folder" ]]; then
+  if [[ -d "$output_folder" ]]; then
     rm -rf "$output_folder"
   else
-    bash $PREFIX/bin/paktool
+    bash "$PREFIX/bin/paktool"
   fi
 }
 
