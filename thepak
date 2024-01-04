@@ -169,6 +169,7 @@ function Error_Fix {
     *) echo "invalid option $REPLY";;
   esac
 done
+}
          
 function Reset_Pak {
   if [[ -d "$pak_folder" ]]; then
