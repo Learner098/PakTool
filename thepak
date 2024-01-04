@@ -1,0 +1,211 @@
+#!/usr/bin/env bash
+
+source script_folder/banner
+
+echo -e "executing: ${LIGHTGREEN}          PakTool${NOCOLOR}"
+echo "----------------------------"
+
+chmod +x script_folder/*.bms
+
+if [[ -d "/sdcard/Download/dir_pak" ]]; then
+  echo ""
+else
+  mkdir /sdcard/Download/dir_pak
+fi
+
+   pak_folder="$HOME/PakTool/pak_folder"
+   output_folder="$HOME/PakTool/output_folder"
+
+ unpacking () {
+  qemu-i386 $PREFIX/share/quickbms/quickbms script_folder/*.bms $pak_folder/$(basename "$selected_file") $output_folder
+}
+
+   repacking () {
+   qemu-i386 $PREFIX/share/quickbms/quickbms -w -r script_folder/*.bms $selected_file /sdcard/Download/copied_dat
+}
+
+ function unpack {
+   prompt="Please select a file to unpack:"
+   options=($(find /sdcard/Download/dir_pak -name "*.pak" -o -name "*.obb"))
+
+   PS3="$prompt "
+   select opt in "${options[@]}" "Quit" ; do 
+       if (( REPLY == 1 + ${#options[@]} )) ; then
+           echo "Operation canceled."
+           exit
+
+       elif (( REPLY > 0 && REPLY <= ${#options[@]} )) ; then
+           selected_file="${options[$REPLY-1]}"
+           echo "You picked $selected_file which is file $REPLY"
+
+           mkdir -p "$pak_folder"
+           cp "$selected_file" "$pak_folder/"
+           
+           unpacking
+           
+           rm -rf $pak_folder
+           
+           break
+
+       else
+           echo "Invalid option. Try another one."
+       fi
+   done
+}
+
+ function repack {
+  prompt="Please select a file to repack:"
+  options=($(find /sdcard/Download/dir_pak -name "*.pak" -o -name "*.obb"))
+
+  PS3="$prompt "
+  select opt in "${options[@]}" "Quit" ; do 
+      if (( REPLY == 1 + ${#options[@]} )) ; then
+          echo "Operation canceled."
+          exit
+
+      elif (( REPLY > 0 && REPLY <= ${#options[@]} )) ; then
+          selected_file="${options[$REPLY-1]}"
+          echo "You picked $selected_file which is file $REPLY"
+          
+          repacking
+          
+          break
+
+      else
+          echo "Invalid option. Try another one."
+      fi
+  done
+}
+
+ function Search_Text {
+  read -p "Enter the string to search for: " search_string
+  
+  search_results=( $(grep -ril "$search_string" $output_folder) )
+
+      if [ ${#search_results[@]} -eq 0 ]; then
+    echo "No matching files found."
+  else
+    echo "Matching files:"
+    for ((i=0; i<${#search_results[@]}; i++)); do
+      
+      if [ $i -eq 0 ]; then
+        echo -e "\e[32m$(($i+1)): $(basename "${search_results[$i]}")\e[0m"
+      else
+        echo "$(($i+1)): $(basename "${search_results[$i]}")"
+      fi
+    done
+
+    all_files_option="All"
+    quit_option="Quit"
+    copy_all_option="Copy All"
+    options=("Select One" "$all_files_option" "$copy_all_option" "$quit_option")
+    selected_files=()
+
+    while true; do
+      read -p "Enter file numbers to add to the selection (e.g., 2,5,6,4), 'a' to select all, or 'q' to quit: " choice
+
+      if [ "$choice" = "q" ]; then
+        echo "Operation canceled."
+        break
+      elif [ "$choice" = "a" ]; then
+        selected_files=("${search_results[@]}")
+        echo "All files selected."
+        break
+      else
+        IFS=',' read -ra file_numbers <<< "$choice"
+
+        for num in "${file_numbers[@]}"; do
+          if [ "$num" -ge 1 ] && [ "$num" -le ${#search_results[@]} ]; then
+            selected_files+=("${search_results[$((num-1))]}")
+            echo "File '$(basename "${search_results[$((num-1))]}")' added to selection."
+          else
+            echo "Invalid file number '$num'. Try another one."
+          fi
+        done
+      fi
+    done
+
+    if [ "${#selected_files[@]}" -eq 0 ]; then
+      echo "No files selected for copying."
+    else
+      echo "Selected files:"
+      for file in "${selected_files[@]}"; do
+        echo "- $(basename "$file")"
+      done
+
+      copied_dat="/sdcard/Download/copied_dat"
+      if [ ! -d "$copied_dat" ]; then
+        mkdir -p "$copied_dat"
+        echo "Created directory '$copied_dat'."
+      fi
+
+      read -p "Enter 'c' to copy all selected files or 'q' to quit: " copy_option
+      if [ "$copy_option" = "c" ]; then
+        for file in "${selected_files[@]}"; do
+          cp "$file" "$copied_dat/"
+          echo "File '$(basename "$file")' copied to the destination directory."
+        done
+      else
+        echo "Operation canceled."
+      fi
+    fi
+  fi
+}
+
+function Error_Fix {
+  options=("Reset_Pak" "Reset_Output" "Quit")
+  select opt in "${option[@]}"
+  do
+    case $opt in
+       "Reset_Pak")
+         Reset_Pak
+         ;;
+       "Reset_Outout")
+         Reset_Output
+         ;;
+       "Quit")
+         break
+         ;;
+    *) echo "invalid option $REPLY";;
+  esac
+done
+         
+funtion Reset_Pak {
+  if [[ -d "$pak_folder" ]]; then
+    rm -rf "$pakfolder"
+  else
+    bash $PREFIX/bin/paktool
+  fi
+}
+
+function Reset_Output {
+  [ -d "$outout_folder" ]]; then
+    rm -rf "$outout_folder"
+  else
+    bash $PREFIX/bin/paktool
+  fi
+}
+
+PS3='Please enter your choice: '
+options=("Unpack" "Repack" "Search_Text" "Error_Fix" "Quit")
+select opt in "${options[@]}"
+do
+  case $opt in
+    "Unpack")
+      unpack
+      ;;
+    "Repack")
+      repack
+      ;;
+    "Search_Text")
+      Search_Text
+      ;;
+    "Error_Fix")
+      Error_Fix
+      ;;
+    "Quit")
+      break
+      ;;
+    *) echo "invalid option $REPLY";;
+  esac
+done

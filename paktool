@@ -1,0 +1,8 @@
+cd ~
+if [[ -d "$HOME/PakTool/pak_folder" ]];then
+rm -rf $HOME/PakTool/pak_folder
+else
+echo""
+fi
+cd $HOME/PakTool
+bash setup
