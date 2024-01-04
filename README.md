@@ -48,4 +48,4 @@ After installation, dir_pak folder is created inside Download folder of your dev
 5. Edit these dats files(these files are considered for repacking)
 
 ## Error_Fix
-1. It basically fix any issue by deleting your large output dats files
+1. There are two more option one is "Reset_Pak" for deleting paks files stucked inside termux storage and another is "Reset_Output" for deleting all the output data from termux storage
