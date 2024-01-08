@@ -51,3 +51,5 @@ After installation, dir_pak folder is created inside Download folder of your dev
 3. Erase_output_folder : delete all the extracted output files stucking inside termux storage
 4. Erase_copied_folder : delete copied files inside download folder of device storage
 5. Null/Add_content : this can emptied your all copied files also you can put desired text which will be replaced
+
+video tutorial: https://youtu.be/mnzBEhFvtoM?si=Hj0vaamFngGwZmn-
