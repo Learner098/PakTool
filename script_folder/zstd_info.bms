@@ -8,7 +8,6 @@ math filecount = 0
 
 for I = 0 < FILES
     if runtimed == filecount
-       print "runtimed"
        string namez = "file_"
        string namez + filecount
        string namez + "/"
