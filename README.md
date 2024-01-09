@@ -38,7 +38,7 @@ After installation, dir_pak folder is created inside Download folder of your dev
 ## Repack 
 1. Before using repack feature,you must place edited files inside "/Download/copied_folder"
 
-## Search_Text
+## Find_Text
 1. If you want to search specific "text" inside output dats files then select this feature
 2. after putting text,it will search for all the dat files that contain specific "text" provide by you
 3. Read prompt carefully and give input what it says.
