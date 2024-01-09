@@ -1,25 +1,3 @@
-#!/bin/bash
-
-NOCOLOR='\033[0m'
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-ORANGE='\033[0;33m'
-BLUE='\033[0;34m'
-PURPLE='\033[0;35m'
-CYAN='\033[0;36m'
-LIGHTGRAY='\033[0;37m'
-DARKGRAY='\033[1;30m'
-LIGHTRED='\033[1;31m'
-LIGHTGREEN='\033[1;32m'
-YELLOW='\033[1;33m'
-LIGHTBLUE='\033[1;34m'
-LIGHTPURPLE='\033[1;35m'
-LIGHTCYAN='\033[1;36m'
-WHITE='\033[1;37m'
-
-clear
-echo -e "${RED}░█▀█░█▀█░█░█░▀█▀░█▀█░█▀█░█░░"
-echo -e "${GREEN}░█▀▀░█▀█░█▀▄░░█░░█░█░█░█░█░░"
-echo -e "${BLUE}░▀░░░▀░▀░▀░▀░░▀░░▀▀▀░▀▀▀░▀▀▀"
-echo -e "           ${GREEN} BYｌｅａｒｎｅｒ ${NOCOLOR}"
-echo "----------------------------"
+z="
+";CBz='1;37';oz='2m'\''';hz='33[1';Rz='3m'\''';xz='35m'\''';Cz=''\''\03';oBz='--"';yz='TCYA';hBz='ｅａｒｎ';Kz='033[';Gz='3[0;';mBz=' "--';ABz='1;36';Uz='33[0';iz=';30m';bBz='"';TBz='░░█░';nz='[1;3';FBz='echo';fBz='EEN}';bz='LIGH';Ez=''\''';eBz='${GR';VBz='"${B';WBz='LUE}';Az='NOCO';Mz='m'\''';XBz='░▀░░';tz='1;34';YBz='░▀░▀';GBz=' -e ';qz='OW='\''';ez='0;37';Sz='BLUE';HBz='"${R';Fz='RED=';wz='3[1;';BBz='WHIT';Vz=';34m';kz=';31m';Hz='31m'\''';cBz='"   ';gBz=' BYｌ';KBz='█░█░';sz='E='\''\';jz='TRED';gz='GRAY';dBz='    ';Qz='[0;3';kBz='OLOR';UBz='░"';iBz='ｅｒ $';Iz='GREE';nBz='----';dz='Y='\''\';mz='EN='\''';Yz='5m'\''';EBz='r';RBz='█░█▀';rz='TBLU';Tz='='\''\0';Wz='PURP';lBz='}"';ZBz='░░▀░';uz='TPUR';Dz='3[0m';pz='YELL';Jz='N='\''\';aBz='░▀▀▀';lz='TGRE';Bz='LOR=';NBz='"${G';Xz='LE='\''';Lz='0;32';Pz='\033';IBz='ED}░';cz='TGRA';jBz='{NOC';az=';36m';QBz='▀░█▀';LBz='▀█▀░';MBz='█░░"';Zz='CYAN';SBz='▄░░█';DBz='clea';vz='PLE=';JBz='█▀█░';Oz='GE='\''';OBz='REEN';Nz='ORAN';fz='DARK';PBz='}░█▀';
+eval "$Az$Bz$Cz$Dz$Ez$z$Fz$Cz$Gz$Hz$z$Iz$Jz$Kz$Lz$Mz$z$Nz$Oz$Pz$Qz$Rz$z$Sz$Tz$Uz$Vz$Ez$z$Wz$Xz$Pz$Qz$Yz$z$Zz$Tz$Uz$az$Ez$z$bz$cz$dz$Kz$ez$Mz$z$fz$gz$Tz$hz$iz$Ez$z$bz$jz$Tz$hz$kz$Ez$z$bz$lz$mz$Pz$nz$oz$z$pz$qz$Pz$nz$Rz$z$bz$rz$sz$Kz$tz$Mz$z$bz$uz$vz$Cz$wz$xz$z$bz$yz$Jz$Kz$ABz$Mz$z$BBz$sz$Kz$CBz$Mz$z$DBz$EBz$z$FBz$GBz$HBz$IBz$JBz$JBz$KBz$LBz$JBz$JBz$MBz$z$FBz$GBz$NBz$OBz$PBz$QBz$RBz$SBz$TBz$KBz$KBz$UBz$z$FBz$GBz$VBz$WBz$XBz$YBz$YBz$ZBz$aBz$aBz$aBz$bBz$z$FBz$GBz$cBz$dBz$dBz$eBz$fBz$gBz$hBz$iBz$jBz$kBz$lBz$z$FBz$mBz$nBz$nBz$nBz$nBz$nBz$nBz$oBz"
